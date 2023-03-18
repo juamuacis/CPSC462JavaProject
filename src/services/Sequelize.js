@@ -5,13 +5,13 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   dialect: 'mysql'
 });
 
-try {
+// try {
   
-  sequelize.authenticate().then(() => {
-    console.log('connection good');
-  });
-} catch (error) {
-  console.error('connection bad');
-}
+//   sequelize.authenticate().then(() => {
+//     console.log('connection good');
+//   });
+// } catch (error) {
+//   console.error('connection bad');
+// }
 
 export default sequelize;
