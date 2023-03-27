@@ -1,5 +1,5 @@
-import Account from "@/models/Account";
-import User from "@/models/User"
+import Account from "../models/Account";
+import User from "../models/User"
 
 export default function MyAdapter(client, options = {}) {
   return {

@@ -6,7 +6,6 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 });
 
 // try {
-  
 //   sequelize.authenticate().then(() => {
 //     console.log('connection good');
 //   });

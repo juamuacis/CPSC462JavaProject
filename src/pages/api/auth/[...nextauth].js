@@ -1,13 +1,11 @@
-import sequelize from "@/services/Sequelize";
+import User from "../../../models/User";
+import PasswordManager from "../../../services/PasswordManager";
+import sequelize from "../../../services/Sequelize";
 import SequelizeAdapter from "@next-auth/sequelize-adapter";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import EmailProvider from "next-auth/providers/email";
-import { v4 as uuidv4 } from 'uuid';
 
-// sequelize.sync();
-
-
+const passwordManager = new PasswordManager();
 
 export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
@@ -15,12 +13,9 @@ export default NextAuth({
     strategy: "jwt",
   },
   providers: [
-    // EmailProvider({
-    //   server: process.env.EMAIL_SERVER,
-    //   from:   process.env.EMAIL_FROM
-    // }),
     CredentialsProvider({
-      name: 'Credentials',
+      id: 'web',
+      name: 'web',
       credentials: {
         username: {
           label: "Username", type: "text", placeholder: "user@example.com"
@@ -30,26 +25,50 @@ export default NextAuth({
         }
       }, 
       async authorize(credentials, req) {
-        console.log(credentials);
+        console.log("credentials", credentials);
 
-        return { id: 1, name: 'J Smith', email: 'fabian@fnino.com', image: "" }
-        const res = await fetch('/api/login-authenticate', {
-          method: "POST",
-          body: JSON.stringify(credentials),
-          headers: {
-            "Content-Type": "application/json"
+        const user = await User.findOne({
+          where: {
+            email: credentials.email
           }
-        });
+        })
 
-        const user = await res.json();
-
-        if (res.ok && user) {
-          return user;
+        if (!user) {
+          throw new Error("Wrong crednetials. Try again.");
         }
+
+        const verifyPassword = await passwordManager.compare(credentials.password, user.password);
         
-        return null;
+        if (!verifyPassword) {
+          throw new Error("Wrong crednetials. Try again.");
+        }
+
+        return {
+          name: user.name,
+          email: user.email
+        }
       }
     })
   ],
   adapter: SequelizeAdapter(sequelize),
+  // callbacks: {
+  //   session: async (sessionProps) => {
+  //     const {session, user, token} = sessionProps;
+
+  //     console.log("session nextAuth user", sessionProps);
+
+  //     if (session?.user) {
+  //       session.user.id = token.uid;
+  //     }
+  //     // console.log("session nextAuth", session);
+  //     return session;
+  //   },
+  //   jwt: async ({user, token, profile}) => {
+  //     // console.log("user nextAuth", token, profile);
+  //     if (profile) {
+  //       token.uid = profile.id;
+  //     }
+  //     return token;
+  //   }
+  // }
 })
