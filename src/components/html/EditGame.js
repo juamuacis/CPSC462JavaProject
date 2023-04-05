@@ -41,7 +41,7 @@ export default function EditGame({gameId}) {
   return (
     <>
       <h1>Edit {game.name}</h1>
-      <form action="/api/create-game"
+      <form action="/api/edit-game"
         style={{
           display: "flex",
           flexDirection: "column",
@@ -53,12 +53,13 @@ export default function EditGame({gameId}) {
           label="Game Name"
           name="name"
           id="name"
+          value={game.name}
           required
         />
         <Button
           type="submit"
           variant="outlined"
-        >Create Game</Button>
+        >Edit</Button>
       </form>
     </>
   );
