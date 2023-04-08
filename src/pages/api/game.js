@@ -22,16 +22,34 @@ export default async function createGameHandler (req, res) {
       }
     })
 
-    // const questions = await game.getQuestion();
-
     
     if (game === null) {
       res.status(404).json({})
       return;
     }
 
-    res.status(200).json({...game.dataValues})
+    const questions = await GameQuestion.findAll({
+      where: {
+        gameId: game.id
+      }
+    })
 
+    for (const q in questions) {
+      const answers = await GameQuestionAnswer.findAll({
+        where: {
+          gameQuestionId  : questions[q].id,
+        }
+      });
+      questions[q].dataValues.answers = answers;
+    }
+    console.log(questions);
+    
+    const response = {
+      game,
+      questions: [...questions]
+    }
+
+    res.status(200).json(response)
 
   } catch (error) {
     console.error(error)

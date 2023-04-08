@@ -1,8 +1,10 @@
 import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
+import Question from "./EditGameComponents/Question";
 
 export default function EditGame({gameId}) {
   const [game, setGame] = useState({});
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     fetch('/api/game', {
@@ -13,21 +15,25 @@ export default function EditGame({gameId}) {
       body: JSON.stringify({gameId})
     }).then((response) => response.json())
       .then((response) => {
-        setGame(response);
+        console.log(response);
+        setGame({...response.game});
+        setQuestions(response.questions);
       })
   }, [gameId])
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSaveQuestions = async () => {
+    console.log({game, questions});
     try {
-      const response = await fetch('/api/edit-game', {
+      const response = await fetch('/api/save-game', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         }, 
-        body: JSON.stringify({name: event.target.name.value})
-      })
+        body: JSON.stringify({game, questions})
+      }).then((response) => response.json())
+        .then((response) => {
+          console.log("saved")
+        })
 
     } catch (error) {
       console.error(error);
@@ -38,29 +44,40 @@ export default function EditGame({gameId}) {
     return <></>
   }
 
+  // console.log({questions});
+
   return (
     <>
-      <h1>Edit {game.name}</h1>
-      <form action="/api/edit-game"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 10
-        }}
-        method="post"
-        onSubmit={handleSubmit}>
-        <TextField
-          label="Game Name"
-          name="name"
-          id="name"
-          value={game.name}
-          required
-        />
-        <Button
-          type="submit"
+      <h1>Edit {game.name}
+        <Button 
+          type="button"
           variant="outlined"
-        >Edit</Button>
-      </form>
+          onClick={handleSaveQuestions}
+        >Save Game</Button>
+      </h1>
+
+      <TextField
+        label="Game Name"
+        name="name"
+        id="name"
+        value={game.name}
+        onChange={(e) => setGame({
+          ...game,
+          name: e.currentTarget.value
+        })}
+        required
+      />
+      <h1>Questions</h1>
+      {
+        questions.map((question, index) => {
+          return <Question 
+            key             = {index}
+            questionIndex   = {index}
+            question        = {question}
+            setQuestions    = {setQuestions}
+            />
+        })
+      }
     </>
   );
 }
