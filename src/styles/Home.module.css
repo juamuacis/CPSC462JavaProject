@@ -1,0 +1,68 @@
+.main {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.main .content {
+	display: flex;
+	flex-grow: 1;
+	backdrop-filter: blur(10px);
+	color: white;
+	justify-content: center;
+	align-items: center;
+  flex-direction: column;
+}
+
+.main .content h1 {
+	font-weight: 100;
+	font-size: 5em;
+	text-shadow: 2px 2px 3px #000;
+  text-align: center;
+}
+
+.main .content .buttonLink {
+    font-size: 2em;
+    text-transform: uppercase;
+    backdrop-filter: blur(30px);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #fff;
+}
+.main .content .buttonLink:focus,
+.main .content .buttonLink:hover  {
+  box-shadow: 0px 0px 10px #fff;
+}
+
+.homeOptions {
+  display: flex; 
+}
+
+.homeOption {
+  flex-basis: 0;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.homeOption a {
+  display: flex;
+  padding: 10%;
+  align-items: center;
+  justify-content: center;
+  max-width: 80%;
+  background-color: #415a77;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  aspect-ratio: 1/1;
+  font-size: 3em; 
+  font-weight: 200;
+  text-decoration: none;
+  text-align: center;
+}
+
+.homeOption a:hover,
+.homeOption a:focus {
+  background-color: #778da9;
+}

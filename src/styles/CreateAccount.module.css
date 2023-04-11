@@ -1,0 +1,27 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 80vw;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.dual {
+  display: flex;
+  gap: 20px;
+}
+
+.dual > div {
+  flex-basis: 0;
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin {
+  display: flex;
+  flex-direction: column;
+}
