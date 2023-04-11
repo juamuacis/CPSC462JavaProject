@@ -1,46 +1,60 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
-import { useState } from 'react';
-import Lobby from './lobby';
-import { useRouter } from 'next/router';
+import Head from 'next/head'
+import Header from '../components/common/Header';
+import styles from '../styles/Home.module.css';
+import { getServerSession } from 'next-auth';
+import Link from 'next/link';
+import Footer from '../components/common/Footer';
 
-
-const inter = Inter({ subsets: ['latin'] });
-
-const Index = () => {
-  // Hook to navigate pages
-  const [playerName, setPlayerName] = useState("");
-
-  const router = useRouter();
-
-  const goLobby = () => {
-    console.log("goLobby")
-    
-    router.push(`lobby?playerName=${ playerName }`); // navigate to lobby page without trigger reload
-  }
-
+export default function Home({name}) {
   return (
     <>
-        <Head>
-          <title>Legacy Legend - Welcome</title>
-        </Head>
-        <form className="home__container" onSubmit={ goLobby }>
-          <h2 className="home__header">Choose a username</h2>
-          <label htmlFor="username">Username</label>
-          <input
-                type="text"
-                minLength={1}
-                name="username"
-                id="username"
-                className="username__input"
-                value={ playerName }
-                onChange={(e) => setPlayerName(e.target.value)}
-          />
-          <button className="home__cta">Enter the lobby</button>
-        </form>
-  </>
+      <Head>
+        <title>Create Next App</title>
+      </Head>
+      <Header />
+      <main>
+        <h1>Welcome {name}</h1>
+        <h2>What do you want to do?</h2>
+        <div className={styles.homeOptions}>
+          <div className={styles.homeOption}>
+            <Link
+              href="/games-lobby"
+            >Play a Game</Link>
+          </div>
+          <div className={styles.homeOption}>
+            <Link
+              href="/host"
+            >Host a Game</Link>
+          </div>
+          <div className={styles.homeOption}>
+            <Link
+              href="/scores"
+            >See All Scores</Link>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </>
   )
 }
 
-export default Index;
+export async function getServerSideProps({req, res}) {
+  const session = await getServerSession(req, res);
+
+  const user = session?.user;
+
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/landing",
+        permanent:   false
+      }
+    }
+  }
+
+  return {
+    props: {
+      name: user.name
+    }
+  }
+}
