@@ -2,7 +2,7 @@ import Head from "next/head"
 import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import ChatScreen from "@/components/chat/ChatScreen";
+import ChatScreen from "../components/chat/ChatScreen";
 
 
 const Lobby = () => {
