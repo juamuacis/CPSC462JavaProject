@@ -23,7 +23,7 @@ export default function Home({name}) {
           </div>
           <div className={styles.homeOption}>
             <Link
-              href="/host/dashboard"
+              href="/host"
             >Host a Game</Link>
           </div>
           <div className={styles.homeOption}>
