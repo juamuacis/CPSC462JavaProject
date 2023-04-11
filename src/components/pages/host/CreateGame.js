@@ -8,7 +8,7 @@ export default function CreateGame() {
     event.preventDefault();
 
     try {
-      const response = await fetch('/api/create-game', {
+      const response = await fetch('/api/games/create', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

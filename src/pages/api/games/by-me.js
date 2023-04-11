@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
-import { Game, GameQuestion, GameQuestionAnswer } from "../../models/Game";
-import User from "../../models/User";
+import { Game, GameQuestion, GameQuestionAnswer } from "../../../models/Game";
+import User from "../../../models/User";
 
 
 
@@ -13,8 +13,6 @@ export default async function listGamesHandler (req, res) {
     })
     return;
   }
-
-  const body = req.body;
 
   try {
     const user = await User.findOne({

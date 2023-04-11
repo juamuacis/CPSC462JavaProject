@@ -1,7 +1,8 @@
-import { Button, Link } from "@mui/material";
+import Link from "next/link";
 import { getCsrfToken, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Button } from "@mui/material";
 
 export default function Header() {
   const {status} = useSession();

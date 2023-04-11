@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
-import { Game, GameQuestion, GameQuestionAnswer } from "../../models/Game";
-import User from "../../models/User";
+import { Game, GameQuestion, GameQuestionAnswer } from "../../../models/Game";
+import User from "../../../models/User";
 
 export default async function createGameHandler (req, res) {
   const session = await getServerSession(req, res);

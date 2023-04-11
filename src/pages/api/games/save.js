@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { Game, GameQuestion, GameQuestionAnswer } from "../../models/Game";
+import { Game, GameQuestion, GameQuestionAnswer } from "../../../models/Game";
 
 export default async function saveGameHandler (req, res) {
   const session = await getServerSession(req, res);
@@ -25,8 +25,8 @@ export default async function saveGameHandler (req, res) {
 
     // Save questions information
 
-    body.questions.map((question) => {
-      GameQuestion.update({
+    body.questions.map(async (question) => {
+      await GameQuestion.update({
         question: question.question
       }, {
         where: {
@@ -36,8 +36,8 @@ export default async function saveGameHandler (req, res) {
 
       // Save answers information
 
-      question.answers.map((answer) => {
-        GameQuestionAnswer.update({
+      question.answers.map(async (answer) => {
+        await GameQuestionAnswer.update({
           answerText: answer.answerText,
           isCorrect : answer.isCorrect
         }, {
@@ -48,7 +48,7 @@ export default async function saveGameHandler (req, res) {
       })
     })
 
-    res.status(200)
+    res.status(200).json([])
 
   } catch (error) {
     console.error(error);

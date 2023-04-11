@@ -1,8 +1,9 @@
 import Head from 'next/head'
-import Header from '../components/html/Header';
+import Header from '../components/common/Header';
 import styles from '../styles/Home.module.css';
 import { getServerSession } from 'next-auth';
-import { Link } from '@mui/material';
+import Link from 'next/link';
+import Footer from '../components/common/Footer';
 
 export default function Home({name}) {
   return (
@@ -17,7 +18,7 @@ export default function Home({name}) {
         <div className={styles.homeOptions}>
           <div className={styles.homeOption}>
             <Link
-              href="/lobby"
+              href="/games-lobby"
             >Play a Game</Link>
           </div>
           <div className={styles.homeOption}>
@@ -27,11 +28,12 @@ export default function Home({name}) {
           </div>
           <div className={styles.homeOption}>
             <Link
-              href="/"
+              href="/scores"
             >See All Scores</Link>
           </div>
         </div>
       </main>
+      <Footer />
     </>
   )
 }

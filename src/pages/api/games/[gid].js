@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { Game, GameQuestion, GameQuestionAnswer } from "../../models/Game";
+import { Game, GameQuestion, GameQuestionAnswer } from "../../../models/Game";
 
 
 
@@ -13,12 +13,26 @@ export default async function createGameHandler (req, res) {
     return;
   }
 
+  const { gid } = req.query;
   const body = req.body;
+
+  let gameId = 0;
+
+  if (gid !== undefined) {
+    gameId = gid;
+  } else if (req.body.gameId !== undefined) {
+    gameId = body.gameId;
+  } else {
+    throw new Error("");
+  }
+
+  console.log(gid);
+
 
   try {
     const game = await Game.findOne({
       where: {
-        id: body.gameId
+        id: gameId
       }
     })
 

@@ -7,16 +7,19 @@ import Dashboard from "../../components/pages/host/Dashboard";
 import EditGame from "../../components/pages/host/EditGame";
 import Header from "../../components/common/Header";
 import { Button } from "@mui/material";
+import AllScores from "../../components/pages/scores/AllScores";
 
 export default function Host() {
   const router = useRouter();
 
-  const [hostPage, gameId] = router.query.slug;
+  const [hostPage, gameId] = router.query.slug ?? ['all'];
+
+  console.log(hostPage);
 
   return (
     <>
       <Head>
-        <title>Games Host</title>
+        <title>Scores</title>
       </Head>
       <Header />
       <main className="with-aside">
@@ -28,21 +31,24 @@ export default function Host() {
           <ul>
             <li>
               <Link
-                href="/host/dashboard"
-                >Host Dashboard</Link>
+                href="/scores/all"
+                >All Scores</Link>
             </li>
             <li>
               <Link
-                href="/host/create-game"
-                >Create Game</Link>
+                href="/scores/mine"
+                >My Played Scores</Link>
+            </li>
+            <li>
+              <Link
+                href="/scores/my-games"
+                >My Hosted Scores</Link>
             </li>
           </ul>
         </aside>
         <div className="content-wrapper">
           {
-            hostPage === 'dashboard'   ? <Dashboard /> : 
-            hostPage === 'create-game' ? <CreateGame /> : 
-            hostPage === 'edit-game' ? <EditGame gameId={gameId} /> : null
+            hostPage === 'all'   ? <AllScores /> : null
           }
         </div>
       </main>

@@ -3,8 +3,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from "@mui/material/styles";
 import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
-import createEmotionCache from "@/config/createEmotionCache";
-import theme from "@/config/theme";
+import createEmotionCache from "../config/createEmotionCache";
+import theme from "../config/theme";
 import '../styles/globals.css'
 
 const clientSideEmotionCache = createEmotionCache();

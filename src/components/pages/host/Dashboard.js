@@ -1,13 +1,20 @@
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function Dashboard() {
   const [games, setGames] = useState([]);
+  const router = useRouter();
 
+  const handleNavigation = (event) => {
+    event.preventDefault();
+    router.push(event.currentTarget.href, undefined, { shallow: true })
+  }
 
   useEffect(() => {
-    fetch('/api/games', {
-      method: "POST",
+    fetch('/api/games/by-me', {
+      method: "GET",
       headers:{
         'Content-Type': 'application/json',
       },
@@ -21,20 +28,21 @@ export default function Dashboard() {
 
   return (
     <>
-      <h1>Dashboard</h1>
+      <h1>Host A Game</h1>
       <h2>My Games</h2>
-      <List>
+      <ul>
         {
           games.map((game, index) => {
             return (
-              <ListItemButton key={index} 
-                component="a" href={`/host/edit-game/${game.id}`}>
-                <ListItemText>{game.name}</ListItemText>
-              </ListItemButton>
+              <li key={index}>
+                <Link 
+                  href={`/host/edit-game/${game.id}`}
+                >{game.name}</Link>
+              </li>
             )
           })
         }
-      </List>
+      </ul>
     </>
   )
 }

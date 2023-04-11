@@ -1,18 +1,20 @@
 import { Button, TextField } from "@mui/material";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Question from "./EditGameComponents/Question";
+import Question from "./Question";
+import Link from "next/link";
 
 export default function EditGame({gameId}) {
   const [game, setGame] = useState({});
   const [questions, setQuestions] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
-    fetch('/api/game', {
-      method: "POST",
+    fetch(`/api/games/${gameId}`, {
+      method: "GET",
       headers:{
         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({gameId})
+      }
     }).then((response) => response.json())
       .then((response) => {
         console.log(response);
@@ -24,16 +26,16 @@ export default function EditGame({gameId}) {
   const handleSaveQuestions = async () => {
     console.log({game, questions});
     try {
-      const response = await fetch('/api/save-game', {
+      const response = await fetch('/api/games/save', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         }, 
         body: JSON.stringify({game, questions})
-      }).then((response) => response.json())
-        .then((response) => {
-          console.log("saved")
-        })
+      });
+
+      console.log("saved")
+      router.push('/host/dashboard', undefined, { shallow: true })
 
     } catch (error) {
       console.error(error);
@@ -48,13 +50,31 @@ export default function EditGame({gameId}) {
 
   return (
     <>
-      <h1>Edit {game.name}
+      <h1>Edit {game.name}</h1>
+
+      <div style={{
+        display: "flex",
+        paddingTop: 20,
+        paddingBottom: 20,
+        marginBottom: 20,
+        gap: 10,
+        justifyContent: "end",
+        background: "#fff",
+        position: "sticky",
+        top: 0,
+        zIndex: 100
+      }}>
+        <Link href="/host/dashboard" passHref>
+          <Button 
+            variant="outlined"
+            color="secondary">Cancel</Button>
+        </Link>
         <Button 
           type="button"
           variant="outlined"
           onClick={handleSaveQuestions}
         >Save Game</Button>
-      </h1>
+      </div>
 
       <TextField
         label="Game Name"

@@ -1,6 +1,6 @@
 import { Alert, Button, TextField } from "@mui/material";
 import Head from "next/head";
-import Header from "../../components/html/Header";
+import Header from "../../components/common/Header";
 import styles from "../../styles/CreateAccount.module.css"
 import { getCsrfToken } from "next-auth/react";
 import { useState } from "react";
