@@ -8,7 +8,8 @@ import * as dat from 'lil-gui'
 
 
 
-
+export default function World(){
+    return<>
 /**
  * Base
 */
@@ -180,4 +181,6 @@ gltfLoader.load(
 
 tick()
 
-*/
+</>
+
+}
