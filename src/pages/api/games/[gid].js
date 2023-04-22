@@ -13,7 +13,7 @@ export default async function createGameHandler (req, res) {
     return;
   }
 
-  const { gid } = req.query;
+  const { gid, includePlayers } = req.query;
   const body = req.body;
 
   let gameId = 0;
@@ -26,17 +26,9 @@ export default async function createGameHandler (req, res) {
     throw new Error("");
   }
 
-  console.log(gid);
-
-
   try {
-    const game = await Game.findOne({
-      where: {
-        id: gameId
-      }
-    })
+    const game = await Game.findByPk(gameId)
 
-    
     if (game === null) {
       res.status(404).json({})
       return;
@@ -44,7 +36,7 @@ export default async function createGameHandler (req, res) {
 
     const questions = await GameQuestion.findAll({
       where: {
-        gameId: game.id
+        gameId: game.dataValues.id
       }
     })
 
@@ -56,7 +48,6 @@ export default async function createGameHandler (req, res) {
       });
       questions[q].dataValues.answers = answers;
     }
-    console.log(questions);
     
     const response = {
       game,

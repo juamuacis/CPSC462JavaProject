@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import Head from "next/head";
 import Header from "../components/common/Header";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function GamesLobby() {
   const [games, setGames] = useState([]);
@@ -27,12 +28,14 @@ export default function GamesLobby() {
       </Head>
       <Header />
       <main>
-        <h1>Games Lobby</h1>
+        <h1>Lobby</h1>
         <ul>
           {
             games.length < 1 ? null : 
-            games.map(({name, host}, index) => <li key={index}>
-              {name} by [{host}]
+            games.map(({id, name, host}, index) => <li key={index}>
+              <Link href={`/game/${id}`}>
+                {name} by [{host}] players in game
+              </Link>
             </li>)
           }
         </ul>
