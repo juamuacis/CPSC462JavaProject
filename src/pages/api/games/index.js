@@ -19,10 +19,13 @@ export default async function listGamesHandler (req, res) {
 
     for (const game of allGames) {
       const user = await User.findByPk(game.userId);
-      games.push({
+
+      const gameInfo = {
         ...game.dataValues,
-        host: user.name
-      })
+        host: user.name,
+      };
+
+      games.push(gameInfo)
     }
 
     res.status(200).json(games)

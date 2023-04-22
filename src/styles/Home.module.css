@@ -35,6 +35,7 @@
 
 .homeOptions {
   display: flex; 
+  gap: 20px;
 }
 
 .homeOption {
@@ -46,20 +47,19 @@
 }
 
 .homeOption a {
-  display: flex;
-  padding: 10%;
-  align-items: center;
-  justify-content: center;
-  max-width: 80%;
-  background-color: #415a77;
-  color: white;
-  border-radius: 10px;
-  border: none;
-  aspect-ratio: 1/1;
-  font-size: 3em; 
-  font-weight: 200;
-  text-decoration: none;
-  text-align: center;
+	display: flex;
+	padding: 10%;
+	align-items: center;
+	justify-content: center;
+	background-color: #415a77;
+	color: white;
+	border-radius: 10px;
+	border: none;
+	font-size: 3em;
+	font-weight: 200;
+	text-decoration: none;
+	text-align: center;
+	height: 100%;
 }
 
 .homeOption a:hover,
