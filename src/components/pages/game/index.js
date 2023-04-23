@@ -4,12 +4,12 @@ import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx'
 import {KeyboardControls} from '@react-three/drei'
 
-/* const root = ReactDOM.createRoot(document.getElementById('root')) 
+const root = ReactDOM.createRoot(document.getElementById('root')) 
   
- */
+
 export default function Game3D ({game}) {
 
-<return>
+
        
 root.render(
     <KeyboardControls
@@ -35,6 +35,6 @@ root.render(
         </Canvas>
     </KeyboardControls>
 )
-  </return>
+return<></> 
   }
   
