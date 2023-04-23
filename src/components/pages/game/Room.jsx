@@ -1,10 +1,9 @@
 
-
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
 export default function Room(props) {
-  const room = useGLTF("./KingHall/scene.gltf");
+  const room = useGLTF("./public/KingHall/scene.gltf");
   
   return <primitive 
   object={room.scene}
@@ -15,4 +14,4 @@ export default function Room(props) {
   />
   }
 
-useGLTF.preload("./KingHall/scene.gltf");
+useGLTF.preload("./public/KingHall/scene.gltf");
