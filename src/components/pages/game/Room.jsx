@@ -8,9 +8,9 @@ export default function Room(props) {
   
   return <primitive 
   object={room.scene}
-  scale = {1}
-  position = { [ 10, 1.5, -5]}
-  //rotation-y={0}
+  scale = {2.1}
+  position = { [ .5, 3.2 ,-18]}
+  
   
   />
   }
