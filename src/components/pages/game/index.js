@@ -1,17 +1,13 @@
 /* import './style.css' */ 
-import ReactDOM from 'react-dom/client'
+/* import ReactDOM from 'react-dom' */
 import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx'
 import {KeyboardControls} from '@react-three/drei'
 
-const root = ReactDOM.createRoot(document.getElementById('root')) 
-  
 
 export default function Game3D ({game}) {
 
 
-       
-root.render(
     <KeyboardControls
     map={[
         {name:'forward', keys: ['ArrowUp', 'KeyW'] },
@@ -34,7 +30,6 @@ root.render(
             <Experience />
         </Canvas>
     </KeyboardControls>
-)
 return<></> 
   }
   
