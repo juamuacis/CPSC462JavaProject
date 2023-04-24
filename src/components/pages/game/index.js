@@ -1,5 +1,5 @@
 /* import './style.css' */ 
-import ReactDOM from 'react-dom/client'
+/* import ReactDOM from 'react-dom' */
 import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx'
 import {KeyboardControls} from '@react-three/drei'
