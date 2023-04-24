@@ -25,7 +25,7 @@ export default function Game(props) {
   }
 
   return (<>
-    <Game3D game={game} />
+    <Game3D game={ game } />
   </>);
 }
 
