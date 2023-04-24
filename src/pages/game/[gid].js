@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Game3D from "../../components/pages/game";
+import Game3D from "../../components/pages/game/index.js";
 
 
 // Front end Component
@@ -25,7 +25,7 @@ export default function Game(props) {
   }
 
   return (<>
-    <Game3D game={game} />
+    <Game3D game={ game } />
   </>);
 }
 
