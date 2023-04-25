@@ -3,14 +3,19 @@
 import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx'
 import {KeyboardControls} from '@react-three/drei'
+import { QuestionAnswerOutlined } from '@mui/icons-material';
+import Questions from './Questions';
 
 /* const root = ReactDOM.createRoot(document.getElementById('root')) 
   
  */
 export default function Game3D ({ game }) {
-    const { questions, anwser } = game;
+    const { questions} = game;
     console.log(questions);
+    // const { answer} = game;
+    // console.log(answer);
 
+    
     return (
         <div id="root">      
             <KeyboardControls
@@ -37,4 +42,3 @@ export default function Game3D ({ game }) {
         </div>
     )  
 }
-  
