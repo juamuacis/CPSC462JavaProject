@@ -2,7 +2,7 @@
 /* import ReactDOM from 'react-dom' */
 import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx'
-import {KeyboardControls} from '@react-three/drei'
+import {KeyboardControls, PerspectiveCamera, PointerLockControls} from '@react-three/drei'
 import { QuestionAnswerOutlined } from '@mui/icons-material';
 import Questions from './Questions';
 
@@ -10,22 +10,22 @@ import Questions from './Questions';
   
  */
 export default function Game3D ({ game }) {
-    const { questions} = game;
-    console.log(questions);
+/*     const { questions} = game;
+    console.log(questions); */
     // const { answer} = game;
     // console.log(answer);
 
     
     return (
         <div id="root">      
-            <KeyboardControls
-            map={[
-                    {name:'forward', keys: ['ArrowUp', 'KeyW'] },
-                    {name:'backward', keys: ['ArrowDown', 'KeyS'] },
-                    {name:'leftward', keys: ['ArrowLeft', 'KeyA'] },
-                    {name:'rightward', keys: ['ArrowRight', 'KeyD'] },
-                    {name:'jump', keys: ['Space'] },
-                ]}>
+             <KeyboardControls
+    map={[
+      { name: "forward", keys: ["ArrowUp", "w", "W"] },
+      { name: "backward", keys: ["ArrowDown", "s", "S"] },
+      { name: "left", keys: ["ArrowLeft", "a", "A"] },
+      { name: "right", keys: ["ArrowRight", "d", "D"] },
+      { name: "jump", keys: ["Space"] },
+    ]}>
                 
                 <Canvas
                     shadows
@@ -37,6 +37,7 @@ export default function Game3D ({ game }) {
                     } }
                 >
                     <Experience />
+                <PointerLockControls/>
                 </Canvas>
             </KeyboardControls>
         </div>

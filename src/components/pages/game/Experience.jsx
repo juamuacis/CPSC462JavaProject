@@ -11,18 +11,21 @@ import Lights from './Lights.jsx'
 import Placeholder from './Placeholder.jsx'
 import Room from './Room.jsx'
 import Player from './Player.jsx'
+import Movement from './Movement.jsx'
 
 
 export default function Experience()
 {
 
     return <>
-        <PointerLockControls/>
+      
         <Lights/>
-
+        
         <Physics>
             <Boundaries/>
-            {/* <Player/> */}
+            <Movement/>
+
+            
         </Physics>
 
         <Suspense
