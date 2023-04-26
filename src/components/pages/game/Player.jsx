@@ -6,7 +6,6 @@ import * as THREE from 'three'
 
 export default function Player(){
 
-   
 
     const body = useRef()
     const [ subscribeKeys, getKeys] = useKeyboardControls()
@@ -16,28 +15,6 @@ export default function Player(){
     const [ smoothedCameraPosition ] = useState(() => new THREE.Vector3(20, 20, 20))
     const [ smoothedCameraTarget] = useState(() => new THREE.Vector3())
 
-
-    {/*Mouse Controls */}
-/* const cursor = {
-    x: 0, 
-    y: 0
-}
-
-const sizes = {
-    width: 800,
-    height: 600
-
-}
-
-    window.addEventListener('mousemove', (event) => {
-        cursor.x = event.clientX / sizes.width - 0.5
-        cursor.y = -(event.clientY / sizes.height - 0.5)
-
-    })
-
-    camera.position.x = cursor.x 
-    camera.position.y = cursor.y
- */
 
     const jump = () =>{
 
@@ -106,23 +83,27 @@ const sizes = {
         const bodyPosition = body.current.translation()
 
         const cameraPosition = new THREE.Vector3()
-        cameraPosition.copy(bodyPosition)
-        cameraPosition.z += 5.25
-        cameraPosition.y += 1.65
+        cameraPosition.copy(bodyPosition) 
+        cameraPosition.z += 4.25
+        cameraPosition.y += 2.25
 
         const cameraTarget = new THREE.Vector3()
         cameraTarget.copy(bodyPosition)
-        cameraTarget.y += 0.25
+        cameraTarget.y += .65
 
         smoothedCameraPosition.lerp(cameraPosition, 5 * delta)
         smoothedCameraTarget.lerp(cameraTarget, 5 * delta)
 
         state.camera.position.copy(smoothedCameraPosition)
-        state.camera.lookAt(smoothedCameraTarget) 
+        state.camera.lookAt(smoothedCameraTarget)  
 
-    })
+    }) 
         
-        return <RigidBody 
+        return<>
+
+       <PointerLockControls/>
+    
+        <RigidBody 
             ref={ body } 
             colliders = 'ball' 
             restitution={.2}
@@ -133,11 +114,12 @@ const sizes = {
             <mesh>
                 <icosahedronGeometry args={[1, 1]}/>
 
-                <meshStandardMaterial flatShading color="mediumpurple"/>
+                <meshStandardMaterial color="blue" opacity={.01} transparent/>
 
             </mesh>
             
         </RigidBody>
         
+        </>
     
 }

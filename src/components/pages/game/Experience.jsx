@@ -22,7 +22,7 @@ export default function Experience()
 
         <Physics>
             <Boundaries/>
-            <Player/>
+            {/* <Player/> */}
         </Physics>
 
         <Suspense

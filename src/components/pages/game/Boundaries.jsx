@@ -19,31 +19,31 @@ export default function Boundaries(){
 
         <RigidBody type = 'fixed' restitution={0.2} friction={ 0 }>
             {/*Back Wall */}
-            <mesh scale={[24, 10, 1]} position={[0, 5, -15]}
+            <mesh scale={[24, 10, 1]} position={[0, 5, -12]}
             >
                 <boxGeometry/>
-                <meshStandardMaterial color="ivory" />
+                <meshStandardMaterial color="ivory" opacity={.1} transparent />
             </mesh> 
 
                 {/*Front Wall */}
-                <mesh scale={[24, 10, 1]} position={[0, 5, 15]}
+                <mesh scale={[23, 10, 1]} position={[0, 5, 13]}
             >
                 <boxGeometry/>
-                <meshStandardMaterial color="ivory" />
+                <meshStandardMaterial color="ivory" opacity={.01} transparent/>
             </mesh> 
 
                     {/*Right Wall */}
-                    <mesh scale={[1, 10, 30]} position={[12, 5, 0]}
+                    <mesh scale={[1, 10, 30]} position={[8, 5, 0]}
             >
                 <boxGeometry/>
-                <meshStandardMaterial color="ivory" />
+                <meshStandardMaterial color="ivory" opacity={.1} transparent />
             </mesh> 
 
                     {/*Left Wall */}
-                    <mesh scale={[1, 10, 30]} position={[-12, 5, 0]}
+                    <mesh scale={[1, 10, 30]} position={[-9, 5, 0]}
             >
                 <boxGeometry/>
-                <meshStandardMaterial color="ivory" />
+                <meshStandardMaterial color="ivory" opacity={.1} transparent />
             </mesh> 
         </RigidBody>
 
