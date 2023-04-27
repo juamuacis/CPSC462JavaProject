@@ -2,7 +2,7 @@
 /* import ReactDOM from 'react-dom' */
 import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx'
-import {KeyboardControls, PerspectiveCamera, PointerLockControls} from '@react-three/drei'
+import {KeyboardControls, PerspectiveCamera, PointerLockControls, OrbitControls} from '@react-three/drei'
 import { QuestionAnswerOutlined } from '@mui/icons-material';
 import Questions from './Questions';
 
@@ -37,6 +37,7 @@ export default function Game3D ({ game }) {
                     } }
                 >
                     <Experience />
+                    {/* <OrbitControls/> */}
                 <PointerLockControls/>
                 </Canvas>
             </KeyboardControls>
