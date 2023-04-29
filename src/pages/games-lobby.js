@@ -29,14 +29,16 @@ export default function GamesLobby() {
       <Header />
       <main>
         <h1>Lobby</h1>
-        <ul>
+        <ul style={styles.gamesList}>
           {
             games.length < 1 ? null : 
-            games.map(({id, name, host}, index) => <li key={index}>
-              <Link href={`/game/${id}`}>
-                {name} by [{host}] players in game
-              </Link>
-            </li>)
+            games.map(({id, name, host}, index) => 
+              <li key={index} style={styles.game}>
+                <Link href={`/game/${id}`} style={styles.gameLink}>
+                  {name} 
+                  <div style={styles.gameHost}>Host: [{host}]</div>
+                </Link>
+              </li>)
           }
         </ul>
       </main>
@@ -67,3 +69,36 @@ export async function getServerSideProps({req, res}) {
   }
 }
 
+const styles = {
+  gamesList: {
+    display: 'flex',
+    gap: '20px',
+    flexWrap: 'wrap',
+    listStyle: 'none',
+    margin: '0',
+    padding: '0',
+  },
+  game: {
+    width: "250px",
+    aspectRatio: "1/1",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#415a77",
+    color: "white",
+    borderRadius: "5px",
+    textAlign: "center",
+    fontSize: 20
+  },
+  gameLink: {
+    padding: "20px",
+    display: "flex",
+    height: "100%",
+    width: "100%",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },  gameHost: {
+    fontSize: 12
+  }
+}
