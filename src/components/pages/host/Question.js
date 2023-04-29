@@ -14,6 +14,18 @@ export default function Question({ questionIndex, question, setQuestions }) {
     });
   }
 
+  // update image url text
+  function handleImageChange(e) {
+    const value = e.currentTarget.value;
+    setQuestions((prevValue) => {
+      let newValue = [
+        ...prevValue
+      ];
+      newValue[questionIndex].image = value;
+      return newValue;
+    });
+  }
+
   // Update answers text
   function handleAnswerChange(e) {
     const answerIndex = Number(e.currentTarget.dataset.index);
@@ -53,6 +65,13 @@ export default function Question({ questionIndex, question, setQuestions }) {
         name="question"
         value={question.question}
         onChange={handleQuestionChange}
+      />
+      <br />
+      <TextField
+        label={`Image URL`}
+        name="image"
+        value={question.image}
+        onChange={handleImageChange}
       />
       <h3>Options</h3>
       <Table>

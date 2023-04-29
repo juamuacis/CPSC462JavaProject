@@ -27,7 +27,8 @@ export default async function saveGameHandler (req, res) {
 
     body.questions.map(async (question) => {
       await GameQuestion.update({
-        question: question.question
+        question: question.question,
+        image: question.image,
       }, {
         where: {
           id: question.id
