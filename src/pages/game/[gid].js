@@ -12,7 +12,7 @@ export default function Game(props) {
   const gid = router.query.gid;
 
   useEffect(() => {
-    fetch(`/api/games/${gid}`)
+    fetch(`/api/games/random-questions/${gid}`)
       .then(res => res.json())
       .then(res => {
         setGame(res);
