@@ -51,7 +51,6 @@ export default function Pov()
             case "KeyR":
                 controlUnlock();
             break;
-            default:
             case "KeyW":
             case "ArrowUp":
                 movementDirection = 'up';
@@ -68,6 +67,7 @@ export default function Pov()
             case "ArrowRight":
                 movementDirection = 'right';
                 break;
+            default:
         }
     }
 
