@@ -65,13 +65,15 @@ export default function Question({ questionIndex, question, setQuestions }) {
         name="question"
         value={question.question}
         onChange={handleQuestionChange}
+        required
       />
-      <br />
+      <br />&nbsp;<br />
       <TextField
         label={`Image URL`}
         name="image"
         value={question.image}
         onChange={handleImageChange}
+        required
       />
       <h3>Options</h3>
       <Table>
