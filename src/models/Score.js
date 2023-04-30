@@ -4,7 +4,8 @@ const { DataTypes } = require("sequelize");
 const Score = sequelize.define('scores', {
   id: {
     type: DataTypes.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true,
   },
   gameId: {
     type: DataTypes.INTEGER

@@ -27,7 +27,10 @@ export const GameQuestion = sequelize.define("game_question", {
   },
   question: {
     type: DataTypes.TEXT,
-  }
+  },
+  image: {
+    type: DataTypes.STRING,
+  },
 });
 
 export const GameQuestionAnswer = sequelize.define("game_question_answer", {

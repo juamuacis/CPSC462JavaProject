@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { PointerLockControls, FirstPersonControl, FlyControls } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 
@@ -6,40 +6,90 @@ export default function Pov()
 {
     const controlsRef = useRef();
 
-    // Enable mouse lock when the canvas is clicked
-    document.addEventListener('click', () => {
-        controlsRef.current.unlock();
-    });
-    
-    // Key press
-    const keys = {};
+    useEffect(() => {
 
-    document.addEventListener('keydown', (e) => {
-        keys[e.code] = true;
+         // Enable mouse lock when the canvas is clicked
+        document.addEventListener('click', controlLock);
+
+        document.addEventListener('keydown', startWalking);
         
-        if (keys['KeyF']) 
-        {
-            controlsRef.current.lock();
+        document.addEventListener('keyup', stopWalking);
+
+        return () => {
+            // Enable mouse lock when the canvas is clicked
+            document.removeEventListener('click', controlLock);
+
+            document.removeEventListener('keydown', startWalking);
+            
+            document.removeEventListener('keyup', stopWalking);        
         }
-        
-        if (keys['KeyR']) 
-        { 
-            controlsRef.current.unlock();
+
+    }, []);
+
+    // Key press
+    let movementDirection = false;
+
+    function controlLock() {
+        controlsRef.current.lock();
+    }
+
+    function controlUnlock() {
+        controlsRef.current.unlock();
+    }
+
+    function stopWalking(e) {
+        movementDirection = false;
+    }
+
+    function startWalking(e) {
+        console.log(e.code)
+
+        switch(e.code) {
+            case "KeyF":
+                controlLock();
+            break;
+            case "KeyR":
+                controlUnlock();
+            break;
+            case "KeyW":
+            case "ArrowUp":
+                movementDirection = 'up';
+                break;
+            case "KeyS":
+            case "ArrowDown":
+                movementDirection = 'down';
+                break;
+            case "KeyA":
+            case "ArrowLeft":
+                movementDirection = 'left';
+                break;
+            case "KeyD":
+            case "ArrowRight":
+                movementDirection = 'right';
+                break;
+            default:
         }
-    });
-    
-    document.addEventListener('keyup', (e) => {
-        keys[e.code] = false;
-    });
+    }
 
     // Control camera
     function updateControls(delta) {
         const speed = 20; // Adjust speed as desired
-    
-        if (keys['KeyW']) controlsRef.current.moveForward(speed * delta);
-        if (keys['KeyS']) controlsRef.current.moveForward(-speed * delta);
-        if (keys['KeyA']) controlsRef.current.moveRight(-speed * delta);
-        if (keys['KeyD']) controlsRef.current.moveRight(speed * delta);
+
+        switch(movementDirection) {
+            case "up":
+                controlsRef.current.moveForward(speed * delta);
+                break;
+            case "down":
+                controlsRef.current.moveForward(-speed * delta);
+                break;
+            case "left":
+                controlsRef.current.moveRight(-speed * delta);
+                break;
+            case "right":
+                controlsRef.current.moveRight(speed * delta);
+                break;
+            default:
+        }
     }
     
     useFrame((state, delta) => {
