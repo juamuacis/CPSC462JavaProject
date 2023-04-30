@@ -45,7 +45,7 @@ export default function Movement() {
         colliders={false} 
         mass={1} 
         type="dynamic" 
-        position={[-3, 3, 8]} 
+        position={[-3, 30, 30]} 
         enabledRotations={[false, false, false]}>
             <CapsuleCollider args={[0.75, 2]} />
     </RigidBody>
