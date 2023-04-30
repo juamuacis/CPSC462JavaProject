@@ -30,6 +30,10 @@ export default function Credits() {
             Next.js by vercel - the REACT framework for the web. by Vercel - The React Framework for the Web. (n.d.). Retrieved April 9, 2023, from https://nextjs.org/ 
             </cite>
           </li>
+          <li>
+            AWSD Buttons Image<br />
+            Wikimedia Comons, from https://commons.wikimedia.org/wiki/File:Cursor_keys--WASD.svg
+          </li>
         </ul>
       </main>
       <Footer />
