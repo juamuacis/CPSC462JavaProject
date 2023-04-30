@@ -8,6 +8,8 @@ import EditGame from "../../components/pages/host/EditGame";
 import Header from "../../components/common/Header";
 import { Button } from "@mui/material";
 import AllScores from "../../components/pages/scores/AllScores";
+import MyGamesScores from "../../components/pages/scores/MyGamesScores";
+import MyScores from "../../components/pages/scores/MyScores";
 
 export default function Host() {
   const router = useRouter();
@@ -48,7 +50,9 @@ export default function Host() {
         </aside>
         <div className="content-wrapper">
           {
-            hostPage === 'all'   ? <AllScores /> : null
+            hostPage === 'all'      ? <AllScores /> :
+            hostPage === 'mine'     ? <MyScores /> :
+            hostPage === 'my-games' ? <MyGamesScores /> : null
           }
         </div>
       </main>

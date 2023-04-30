@@ -1,0 +1,8 @@
+Model Information:
+* title:	Art Gallery Hallway
+* source:	https://sketchfab.com/3d-models/art-gallery-hallway-b7de7f60f9344e13aac3616102812e9e
+* author:	Janis Zeps (https://sketchfab.com/zeps9001)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

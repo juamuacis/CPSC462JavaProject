@@ -1,5 +1,9 @@
 import React, { useEffect, useRef } from 'react';
+<<<<<<< HEAD
 import { PointerLockControls, FirstPersonControl, FlyControls, } from '@react-three/drei';
+=======
+import { PointerLockControls, FirstPersonControl, FlyControls } from '@react-three/drei';
+>>>>>>> 3fd257df683b5fb3a3e11e17c4a4f6dbe94e7cc2
 import { useFrame, useThree } from '@react-three/fiber';
 
 export default function Pov()
@@ -96,5 +100,9 @@ export default function Pov()
         updateControls(delta);
     });
 
+<<<<<<< HEAD
     return<PointerLockControls ref={ controlsRef } />
+=======
+    return <PointerLockControls ref={ controlsRef } />
+>>>>>>> 3fd257df683b5fb3a3e11e17c4a4f6dbe94e7cc2
 }
