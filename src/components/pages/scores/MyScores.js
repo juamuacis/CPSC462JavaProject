@@ -2,11 +2,11 @@
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { useEffect, useState } from "react";
 
-export default function AllScores() {
+export default function MyScores() {
   const [scores, setScores] = useState([]);
 
   useEffect(() => {
-    fetch('/api/scores', {
+    fetch('/api/scores/mine', {
       
     })
       .then(res => res.json())
