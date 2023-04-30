@@ -1,10 +1,7 @@
-
 import { Canvas } from '@react-three/fiber'
-import Experience from './Experience.jsx'
-import {KeyboardControls, PerspectiveCamera, PointerLockControls} from '@react-three/drei'
-import { Canvas} from '@react-three/fiber';
-import Experience from './Experience.js';
-import { KeyboardControls } from '@react-three/drei';
+import Experience from './Experience.js'
+import {KeyboardControls} from '@react-three/drei'
+
 
 export default function Home() {
   return (
@@ -27,7 +24,6 @@ export default function Home() {
                     } }
                 >
                     <Experience />
-                <PointerLockControls/>
                 </Canvas>
             </KeyboardControls>
         </div>

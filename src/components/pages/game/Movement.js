@@ -5,12 +5,8 @@ import { useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier"
 
-<<<<<<<< Updated upstream:src/components/pages/game/Movement.jsx
 
-const SPEED = 5
-========
 const SPEED = 10
->>>>>>>> Stashed changes:src/components/pages/game/Movement.js
 const direction = new THREE.Vector3()
 const frontVector = new THREE.Vector3()
 const sideVector = new THREE.Vector3()
@@ -47,15 +43,9 @@ export default function Movement() {
     <RigidBody 
         ref={ref}    
         colliders={false} 
-<<<<<<<< Updated upstream:src/components/pages/game/Movement.jsx
-        mass={2} 
-        type="dynamic" 
-        position={[0, 10, 0]} 
-========
         mass={1} 
         type="dynamic" 
         position={[-3, 3, 8]} 
->>>>>>>> Stashed changes:src/components/pages/game/Movement.js
         enabledRotations={[false, false, false]}>
             <CapsuleCollider args={[0.75, 2]} />
     </RigidBody>
