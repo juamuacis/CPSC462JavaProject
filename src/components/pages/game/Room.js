@@ -1,8 +1,7 @@
-import { useGLTF, Html } from "@react-three/drei";
-import { useMemo } from "react";
+import { useGLTF} from "@react-three/drei";
 import Frames from "./Frames";
 
-export default function Room( props ) {
+export default function Room( ) {
     const hallway = useGLTF("/gallery/scene.gltf");
     console.log(hallway);
     const { nodes } = hallway;
@@ -16,7 +15,6 @@ export default function Room( props ) {
         position={ [ - 2.5, 0, 2.5 ] }
     >
         <Frames />
-
 
     </primitive>
     )

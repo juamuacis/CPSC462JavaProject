@@ -1,8 +1,11 @@
 import React, { Suspense } from 'react';
-import { Html } from "@react-three/drei";
+import { Physics} from '@react-three/rapier';
+import { PointerLockControls, } from "@react-three/drei";
 import Room from './Room';
-import Pov from './Pov';
 import Lights from './Lights';
+import Boundaries from './Boundaries';
+import Movement from './Movement';
+import Placeholder from './Placeholder';
 
 export default function Experience()
 {
@@ -10,13 +13,18 @@ export default function Experience()
     return (
     <>
         <Lights />
-        
-        <Pov /> 
+        <Suspense
+         fallback= {<Placeholder position-y ={0.5} scale={[2, 3, 2]}/>}>
 
-        <Suspense>
+            {/* Camera with Physics */}
+            <Physics>
+                <PointerLockControls/>
+                <Movement/>
+                <Boundaries/>
+            </Physics>
+        
             <Room />
         </Suspense>
-
     </>
     )
 }

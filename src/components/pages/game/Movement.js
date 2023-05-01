@@ -6,11 +6,10 @@ import { useKeyboardControls } from "@react-three/drei"
 import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier"
 
 
-const SPEED = 10
+const SPEED = 20
 const direction = new THREE.Vector3()
 const frontVector = new THREE.Vector3()
 const sideVector = new THREE.Vector3()
-
 
 export default function Movement() {
  
@@ -37,17 +36,19 @@ export default function Movement() {
     const grounded = ray && ray.collider && Math.abs(ray.toi) <= 1.75
     if (jump && grounded) ref.current.setLinvel({ x: 0, y: 7.5, z: 0 })
   })
+
+  
   return<>
   
     <RigidBody 
         ref={ref}    
         colliders={false} 
-        mass={5} 
+        mass={1} 
         type="dynamic" 
-        position={[0, 2, 0]} 
+        position={[-3, 30, 30]} 
         enabledRotations={[false, false, false]}>
             <CapsuleCollider args={[0.75, 2]} />
     </RigidBody>
     </>
-  
+ 
 }
