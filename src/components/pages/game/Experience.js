@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 import { Physics} from '@react-three/rapier';
 import { PointerLockControls, } from "@react-three/drei";
 import Room from './Room';
-import Pov from './Pov';
 import Lights from './Lights';
 import Boundaries from './Boundaries';
 import Movement from './Movement';
@@ -22,7 +21,6 @@ export default function Experience()
                 <PointerLockControls/>
                 <Movement/>
                 <Boundaries/>
-                {/*  <Pov /> */} 
             </Physics>
         
             <Room />
