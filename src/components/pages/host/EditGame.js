@@ -23,7 +23,8 @@ export default function EditGame({gameId}) {
       })
   }, [gameId])
 
-  const handleSaveQuestions = async () => {
+  const handleSaveQuestions = async (e) => {
+    e.preventDefault();
     console.log({game, questions});
     try {
       const response = await fetch('/api/games/save', {
@@ -51,53 +52,56 @@ export default function EditGame({gameId}) {
   return (
     <>
       <h1>Edit {game.name}</h1>
-
-      <div style={{
-        display: "flex",
-        paddingTop: 20,
-        paddingBottom: 20,
-        marginBottom: 20,
-        gap: 10,
-        justifyContent: "end",
-        background: "#fff",
-        position: "sticky",
-        top: 0,
-        zIndex: 100
-      }}>
-        <Link href="/host/dashboard" passHref>
+      <form action="" method="post"
+        onSubmit={handleSaveQuestions}
+      >
+        <div style={{
+          display: "flex",
+          paddingTop: 20,
+          paddingBottom: 20,
+          marginBottom: 20,
+          gap: 10,
+          justifyContent: "end",
+          background: "#fff",
+          position: "sticky",
+          top: 0,
+          zIndex: 100
+        }}>
+          <Link href="/host/dashboard" passHref>
+            <Button 
+              variant="outlined"
+              color="secondary">Cancel</Button>
+          </Link>
           <Button 
+            type="submit"
             variant="outlined"
-            color="secondary">Cancel</Button>
-        </Link>
-        <Button 
-          type="button"
-          variant="outlined"
-          onClick={handleSaveQuestions}
-        >Save Game</Button>
-      </div>
+          >Save Game</Button>
+        </div>
 
-      <TextField
-        label="Game Name"
-        name="name"
-        id="name"
-        value={game.name}
-        onChange={(e) => setGame({
-          ...game,
-          name: e.currentTarget.value
-        })}
-        required
-      />
-      <h1>Questions</h1>
-      {
-        questions.map((question, index) => {
-          return <Question 
-            key             = {index}
-            questionIndex   = {index}
-            question        = {question}
-            setQuestions    = {setQuestions}
-            />
-        })
-      }
+        <TextField
+          label="Game Name"
+          name="name"
+          id="name"
+          value={game.name}
+          onChange={(e) => setGame({
+            ...game,
+            name: e.currentTarget.value
+          })}
+          required
+        />
+        <h1>Questions</h1>
+        {
+          questions.map((question, index) => {
+            return <Question 
+              key             = {index}
+              questionIndex   = {index}
+              question        = {question}
+              setQuestions    = {setQuestions}
+              />
+          })
+        }
+      </form>
+
     </>
   );
 }
