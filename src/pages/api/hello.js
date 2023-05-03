@@ -2,7 +2,7 @@
 
 // import Account from "@/models/Account";
 // import User from "@/models/User";
-import sequelize from "@/services/Sequelize"
+//import sequelize from "@/services/Sequelize"
 
 
 export default function handler(req, res) {
