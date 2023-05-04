@@ -7,7 +7,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 const passwordManager = new PasswordManager();
 
-export default NextAuth({
+export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
@@ -51,24 +51,6 @@ export default NextAuth({
     })
   ],
   adapter: SequelizeAdapter(sequelize),
-  // callbacks: {
-  //   session: async (sessionProps) => {
-  //     const {session, user, token} = sessionProps;
+}
 
-  //     console.log("session nextAuth user", sessionProps);
-
-  //     if (session?.user) {
-  //       session.user.id = token.uid;
-  //     }
-  //     // console.log("session nextAuth", session);
-  //     return session;
-  //   },
-  //   jwt: async ({user, token, profile}) => {
-  //     // console.log("user nextAuth", token, profile);
-  //     if (profile) {
-  //       token.uid = profile.id;
-  //     }
-  //     return token;
-  //   }
-  // }
-})
+export default NextAuth(authOptions);

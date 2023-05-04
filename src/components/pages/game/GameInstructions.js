@@ -1,3 +1,5 @@
+
+
 export default function GameInstructions() {
 
     return (
@@ -19,7 +21,7 @@ export default function GameInstructions() {
             <h1>Instructions</h1>
             <h2>Controls</h2>
             <div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Cursor_keys--WASD.svg"
+                <image src="https://upload.wikimedia.org/wikipedia/commons/0/05/Cursor_keys--WASD.svg"
                     alt=""
                     style={{ 
                         float: "left",
