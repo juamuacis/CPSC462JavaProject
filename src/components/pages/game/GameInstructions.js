@@ -17,11 +17,12 @@ export default function GameInstructions() {
             transform: "translate(-50%, -50%)",
             color: "white",
             flexDirection: 'column',
+            overflowY: 'scroll',
         }}>
             <h1>Instructions</h1>
             <h2>Controls</h2>
             <div>
-                <image src="https://upload.wikimedia.org/wikipedia/commons/0/05/Cursor_keys--WASD.svg"
+                <img src="/images/Cursor_keys--WASD.svg"
                     alt=""
                     style={{ 
                         float: "left",
