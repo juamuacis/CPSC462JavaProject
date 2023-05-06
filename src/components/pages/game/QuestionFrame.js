@@ -13,7 +13,7 @@ export default function QuestionFrame({ question, size }) {
             }}
                 onClick={() => setQuestionIsHidden(false)}
             >
-                <image src={question.image}
+                <img src={question.image}
                     style={{
                         objectFit: 'cover',
                         width: size.width,
