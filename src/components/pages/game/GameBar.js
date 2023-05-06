@@ -4,6 +4,9 @@ import GameInstructions from "./GameInstructions";
 
 export default function GameBar({ questions }) {
     const [showInstructions, setShowInstructions] = useState(false);
+    const audioElement = useRef(null);
+    const [musicPlaying, setMusicPlaying] = useState(true);
+
 
     // The following 2 references are used to maintain a count of all quesitons
     // used to print the number of remaining questions at the lower bar menu.
@@ -32,6 +35,8 @@ export default function GameBar({ questions }) {
                 listOfQuestionIDs.current.push(question);
             }
         }
+
+        audioElement.current.play();
 
         // Vanilla JS method to imperatively update the count of unanswered questions
         answerCountSpan.current.textContent = listOfQuestionIDs.current.length;
@@ -75,6 +80,18 @@ export default function GameBar({ questions }) {
         answerCountSpan.current.textContent = listOfQuestionIDs.current.length;
     }
 
+    function toggleMusic() {
+        if (musicPlaying) {
+            audioElement.current.pause();
+        } else {
+            audioElement.current.play();
+        }
+        setMusicPlaying((current) => {
+            return !current
+        })
+    }
+    
+
     return (
         <>
             <div style={{
@@ -114,6 +131,22 @@ export default function GameBar({ questions }) {
                             setShowInstructions(prev => !prev);
                         }}
                     >Instructions</button>
+                    <button type="button"
+                        style={{
+                            border: 'none',
+                            borderRadius: 5,
+                            backgroundColor: '#888',
+                            padding: 10,
+                            color: 'white',
+                            cursor: 'pointer',
+                            fontSize: '.8em',
+                        }}
+                        onClick={() => {
+                            toggleMusic()
+                        }}
+                    >
+                        {musicPlaying ? 'Pause Sound' : 'Play Sound'}
+                    </button>
                 </div>
                 <div>
                     Keep searching! There are still:&nbsp;
@@ -135,6 +168,12 @@ export default function GameBar({ questions }) {
                 showInstructions &&
                 <GameInstructions />
             }
+            <audio 
+                ref={audioElement}
+                autoPlay
+                loop
+                src="/hymn.mp3">
+            </audio>
         </>
     );
 }
